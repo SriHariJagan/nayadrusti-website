@@ -1,0 +1,46 @@
+.carouselWrapper {
+  padding: 16px 32px;
+  /* background: #f9f9f9; */
+}
+
+.companyCard {
+  background: rgb(247, 240, 240);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.companyCard:hover {
+  transform: scale(1.05);
+}
+
+:global(.swiper-wrapper){
+    position: relative;
+}
+
+/* Swiper navigation arrows */
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+    position: absolute;
+  color: #333;
+  width: 10px;
+  height: 30px;
+  top: 62%;
+}
+
+:global(.swiper-button-prev:after),
+:global(.swiper-button-next:after) {
+  font-size: 22px; /* Direct override */
+}
+
+
+
+:global(.swiper-button-next:hover),
+:global(.swiper-button-prev:hover) {
+  color: #0056d2;
+}
