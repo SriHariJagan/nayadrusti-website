@@ -1,51 +1,72 @@
-import React, { useEffect, useRef, useState } from 'react'
-import styles from './home.module.css'
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./home.module.css";
+import { motion } from "framer-motion";
+import TypingEffect from "../../Components/TypingEffect/TypingEffect";
 
 const Home = () => {
-  const vantaRef = useRef(null)
-  const [vantaEffect, setVantaEffect] = useState(null)
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
 
-  useEffect(() => {
-    // Dynamically load scripts
-    const loadScripts = async () => {
-      const THREE = await import('three')
-      const VANTA = await import('vanta/dist/vanta.globe.min')
+  // const text = "we serve clients who lead with purpose. Our consultancy empowers decision-makers with the clarity to act and the wisdom to grow."
+  const text = "NayaDrishti Consulting is a leading Technology and IT Services company based in India, delivering IT Strategy, Consulting, Custom Software Development services and HR consulting to clients globally."
 
-      if (!vantaEffect) {
-        const effect = VANTA.default({
-          el: vantaRef.current,
-          THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0x333333,
-          color2: 0xa26161,
-          size: 1.10,
-          backgroundColor: 0xcacaca
-        })
-        setVantaEffect(effect)
-      }
+ useEffect(() => {
+  let effectInstance;
+
+  const loadScripts = async () => {
+    const THREE = await import("three");
+    const VANTA = await import("vanta/dist/vanta.globe.min");
+
+    if (!vantaEffect) {
+      effectInstance = VANTA.default({
+        vertexColors: true,
+        el: vantaRef.current,
+        THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xDFD0B8,
+        color2: 0xFF6500,
+        backgroundColor: 0x222831,
+      });
+      setVantaEffect(effectInstance);
     }
+  };
 
-    loadScripts()
+  loadScripts();
 
-    return () => {
-      if (vantaEffect) vantaEffect.destroy()
-    }
-  }, [vantaEffect])
+  return () => {
+    if (effectInstance) effectInstance.destroy();
+  };
+}, []);
+
 
   return (
     <div ref={vantaRef} className={styles.homeContainer}>
       <div className={styles.content}>
-        <h1>Welcome to MyCompany AI</h1>
-        <p>Explore intelligent conversations like never before.</p>
+        <motion.h2
+          className={styles.animatedTitle}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          NayaDrishti Consulting
+          <span>NayaDrishti Consulting</span>
+          <span>NayaDrishti Consulting</span>
+          <span>Your Vision, Reimagined.</span>
+        </motion.h2>
+
+        <section>
+          {/* <TypingEffect text={text}/> */}
+          {text}
+        </section>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

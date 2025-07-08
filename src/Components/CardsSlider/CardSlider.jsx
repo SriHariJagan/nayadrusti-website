@@ -4,27 +4,32 @@ import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
+import { aboutCompany } from '../../data'
+
 import styles from './CardSlider.module.css'
 
 const CardSlider = () => {
-  const cards = [
-    {
-      value: '35',
-      name: 'years of expertise'
-    },
-    {
-      value: "750+",
-      name: "IT professionals"
-    },
-    {
-      value: "4K",
-      name: "success stories"
-    },
-    {
-      value: "30+",
-      name: "industries covered"
-    }
-  ]
+
+  const { cards } = aboutCompany
+
+  // const cards = [
+  //   {
+  //     value: '35',
+  //     name: 'years of expertise'
+  //   },
+  //   {
+  //     value: "750+",
+  //     name: "IT professionals"
+  //   },
+  //   {
+  //     value: "4K",
+  //     name: "success stories"
+  //   },
+  //   {
+  //     value: "30+",
+  //     name: "industries covered"
+  //   }
+  // ]
   return (
     <div className={styles.sliderWrapper}>
       <Swiper

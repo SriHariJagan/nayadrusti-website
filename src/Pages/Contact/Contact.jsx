@@ -1,7 +1,12 @@
-// Contact.jsx
-import React from 'react';
-import styles from './contact.module.css';
-import { Phone, Mail, MessageCircleMore, Mic, UploadCloud, Globe, Linkedin } from 'lucide-react';
+import React from "react";
+import styles from "./contact.module.css";
+import {
+  Phone,
+  Mail,
+  MessageCircleMore,
+  UploadCloud,
+  Linkedin,
+} from "lucide-react";
 
 const Contact = () => {
   return (
@@ -27,28 +32,72 @@ const Contact = () => {
             </div>
 
             <div className={styles.row}>
-              <input type="email" placeholder="Work email" />
-              <input type="number" placeholder="+91 9876543210" min={0} />
+              <input type="email" placeholder="Work email" required />
+              <input
+                type="tel"
+                placeholder="Enter 10-digit phone number"
+                maxLength={10}
+                pattern="[6-9]{1}[0-9]{9}"
+                title="Enter a valid 10-digit Indian phone number"
+                required
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                }}
+              />
             </div>
 
-            <button type="submit" className={styles.sendBtn}>Send</button>
+            <button type="submit" className={styles.sendBtn}>
+              Send
+            </button>
           </form>
         </div>
 
         <div className={styles.right}>
           <h3 className={styles.contactTitle}>Get in touch instantly</h3>
           <ul className={styles.contactList}>
-            <li><Phone size={18} /> Call us</li>
-            <li><Mail size={18} /> Email us</li>
-            <li><MessageCircleMore size={18} color="green" /> WhatsApp</li>
-            <li><MessageCircleMore size={18} /> Live chat</li>
+            <li>
+              <a href="tel:+918920824291" className={styles.contactLink}>
+                <Phone size={18} /> Call us
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=nayadrishticonsulting@gmail.com"
+                className={styles.contactLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail size={18} /> Email us
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://wa.me/918920824291"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                <MessageCircleMore size={18} color="green" /> WhatsApp
+              </a>
+            </li>
           </ul>
 
           <h4 className={styles.sectionTitle}>For journalists</h4>
-          <p className={styles.linkRow}><Linkedin size={18} /> Get unique insights</p>
+          <p className={styles.linkRow}>
+            <a
+              href="https://www.linkedin.com/company/nayadrishti"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactLink}
+            >
+              <Linkedin size={18} /> Get unique insights
+            </a>
+          </p>
 
           <h4 className={styles.sectionTitle}>Join our team</h4>
-          <p className={styles.linkRow}><UploadCloud size={18} /> Upload your CV</p>
+          <p className={styles.linkRow}>
+            <UploadCloud size={18} /> Upload your CV
+          </p>
         </div>
       </div>
     </div>

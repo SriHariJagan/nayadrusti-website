@@ -1,23 +1,22 @@
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
-import styles from './CompanyCarousel.module.css'
+import { aboutCompany } from "../../data";
+
+import styles from "./CompanyCarousel.module.css";
 
 const CompanyCarousel = () => {
-  const companies = [
-    'Amazon', 'Google', 'Microsoft', 'Apple',
-    'Netflix', 'Tesla', 'Adobe', 'Meta'
-  ]
+  const { companies } = aboutCompany;
 
   return (
     <div className={styles.carouselWrapper}>
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={24}
-        slidesPerView={1}  //{ 👈 Show 1 on mobile by default }
+        slidesPerView={1} //{ 👈 Show 1 on mobile by default }
         navigation
         autoplay={{
           delay: 5000,
@@ -30,14 +29,20 @@ const CompanyCarousel = () => {
         }}
         loop={true}
       >
-        {companies.map((name, index) => (
+        {companies.map((company, index) => (
           <SwiperSlide key={index}>
-            <div className={styles.companyCard}>{name}</div>
+            <div className={styles.companyCard}>
+              <img
+                src={company?.logo ?? "/Images/default-logo.png"}
+                alt={company?.name ?? "Company"}
+                className={styles.logoImage}
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
     </div>
-  )
-}
+  );
+};
 
-export default CompanyCarousel
+export default CompanyCarousel;
